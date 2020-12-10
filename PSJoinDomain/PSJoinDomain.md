@@ -148,7 +148,7 @@ Before we can use this script we will need to modify our `Unattended.xml` found 
 </component>
 ```
 
-With the `Microsoft-Windows-UnattendedJoin` removed from our `Unattended.xml` file, we now have to &#x1F536;<b>disable "Recover From Domain"</b>&#x1F536; in our task sequence. If we leave it enabled, we will attempt to bind to the domain once the step is reached and if we delete "Recover From Domain" we will not see Join Domain as an option in the Task Sequence Wizard and the `JOINDOMAIN` variable will not be created.
+With the `Microsoft-Windows-UnattendedJoin` removed from our `Unattended.xml` file, we now have to <font color="red"><b>disable "Recover From Domain"</b></font> in our task sequence. If we leave it enabled, we will attempt to bind to the domain once the step is reached and if we delete "Recover From Domain" we will not see Join Domain as an option in the Task Sequence Wizard and the `JOINDOMAIN` variable will not be created.
 
 We are now ready to add our `DomainJoinWithRetry.ps1` script to MDT. Add a `Run PowerShell Script` step to our Task Sequence whereever you'd like the domain bind to take place. Personally I like to have this as one of the final steps since it has the possibility of pausing a deployment.
 
