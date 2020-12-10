@@ -146,10 +146,10 @@ Using your text editor of choice create the file `/mnt/secure/authorization` usi
 
 Create another text file at `/mnt/secure/passphrase` including your dataset's passphrase.
 
-Once you have finished creating both text files, continue through <b>ScubaMatts</b> guide <b>completely ignoring Step 4</b>.
+Once you have finished creating both text files, continue through <b>ScubaMatts</b> guide <span style="font-weight: bold; color:red">completely ignoring Step 4</span>.
 
 -----
-Now that you have completed <b>ScubaMatt's</b> guide while <b>ignoring Step 4</b> we will now continue.
+Now that you have completed <b>ScubaMatt's</b> guide while <span style="font-weight: bold; color:red">ignoring Step 4</span> we will now continue.
 
 Thankfully decrypting a dataset doesn't require a key file so we can skip using python all together, simplify the `/root/auto-mount/auto-mount.sh` script, and remove the need for a RAMdisk.
 
