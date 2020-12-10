@@ -11,7 +11,9 @@
     * [Putting it all together](#putting-it-all-together)
         * [Quick Start](#quick-start)
     * [Using the script in MDT](#using-the-script-in-mdt)
+
 ---
+
 ## Introduction
 
 If you'd like to skip the explanation and move straight to setup click [here](#quick-start).
