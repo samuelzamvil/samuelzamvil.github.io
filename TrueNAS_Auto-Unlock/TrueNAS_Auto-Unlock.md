@@ -16,7 +16,9 @@
 
 ### Introduction
 
-One thing that has been a pain point for me using the encryption in FreeNAS/TrueNAS has been the automatic decryption of encrypted datasets. The problem being, is that my usecase for encryption is that I want to protect my data from physical theft. Thankfully the user <b>ScubaMatt</b> on the LawrenceSystems forums came up with a solution and comprehensive write up. I've been using his solution of using a pizero that holds a ZFS pool recovery key inside a LUKS container, where the containers password is contained on the FreeNAS server. In the solution both systems can only unlock what resides on the other and must be available to unlock the drive at boot. So in the event of a theft, a robber would need to find and grab the server along with the raspberrypi to have access to the encrypted data.
+One thing that has been a pain point for me using the encryption in FreeNAS/TrueNAS has been the automatic decryption of encrypted datasets. The problem being, is my usecase for encryption is a desire to protect my data from physical theft. Thankfully the user <b>ScubaMatt</b> on the LawrenceSystems forums came up with a solution and comprehensive write up.
+
+I've been using his solution of using a pi-zero that holds a ZFS pool recovery key inside a LUKS container, where the containers password is contained on the FreeNAS server. In the solution both systems can only unlock what resides on the other and must be available to unlock the drive at boot. So in the event of a theft, a robber would need to find and grab the server along with the raspberrypi to have access to the encrypted data.
 
 I decided to write this blog post after finding the need to reinvent the previous solution to work with latest version of TrueNAS dataset encryption. It took quite a bit of effort to understand what was expected from the v2 API in order to get it to work. After going through this effort I figured others could benefit from an explanation and solution. There honestly might have been a better way but I couldn't track it down in the documentation.
 
