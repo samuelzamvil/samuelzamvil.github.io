@@ -12,7 +12,7 @@
 ---
 
 #### Credits to user ScubaMatt on the Lawrance Systems forum for coming up with a method for automatically decrypting a legacy encrypted pool. This setup will partially follow his setup instructions and rely on some of the scripts he wrote. 
-#####https://forums.lawrencesystems.com/t/freenas-automatic-decryption-on-boot/2586/5
+##### https://forums.lawrencesystems.com/t/freenas-automatic-decryption-on-boot/2586/5
 
 ### Introduction
 
@@ -35,11 +35,11 @@ First things first we have to be authorized to access the API, this can be done 
 ##### Using an API Key
 This is documented well in the <a href="https://www.truenas.com/docs/hub/additional-topics/api/">API V2 documentation</a> so I won't duplicate efforts here.
 
-To prevent having the key reside in your console history run the following command.
+To prevent having the key reside in your console history run the following command and paste the `API Key` you created at the prompt.
 ```bash
-echo -n "APIKEY="; PASS=`read -r -s -E`
+echo -n "APIKEY="; APIKEY=`read -r -s -e`
 ```
-We can now use the API key by adding the following to cURL, `--header "Authorization: Bearer $APIKEY"`.
+We can now use the API key in our web requests by adding the following to cURL, `--header "Authorization: Bearer $APIKEY"`.
 
 ##### Using Basic Auth
 
@@ -47,8 +47,8 @@ This is a bit more involved because you will need to encode you username and pas
 
 In BASH or z-shell run the following.
 ```bash    
-echo -n "Username="; USER=`read -r -E`
-echo -n "Password="; PASS=`read -r -s -E`
+echo -n "Username="; USER=`read -r -e`
+echo -n "Password="; PASS=`read -r -s -e`
 USERPASS=$(echo -n "$USER:$PASS" | iconv -t ISO-8859-1 | base64 -i -)
 ```
 We now have our basic auth password saved as a variable, which we will add to cURL. `--header "authorization: Basic $USERPASS"`
@@ -62,10 +62,10 @@ Please note that we are not exporting these variables anywhere so everytime you 
 
 ##### Testing Access
 
-I like to try and test while also getting some usable information for the unlock script we'll be creating later on. To do this we will call cURL with the headers we just created, making a `GET` request to the `'https://<TrueNAS Host>/api/v2.0/pool/dataset''`. Because this request will give us way more information than we need we will use `grep` to filter our results.
-Also, you may need to use the `--insecure` flag in order to get a response. This is required for me because my server uses a self-signed certificate, which is the default for FreeNAS/TrueNAS.
+I like to try and test while also getting some usable information for the unlock script we'll be creating later on. To do this we will call cURL with the headers we just created, making a `GET` request to the `'https://<TrueNAS Host>/api/v2.0/pool/dataset'`. Because this request will give us way more information than we need we will use `head -n 3` to restrict our results to the top 3 lines.
+Also, you may need to use the `--insecure` flag in order to get a response. This is required for me because my server uses a self-signed certificate, which is the default for FreeNAS/TrueNAS. I am also using the `-s` argument in cURL to enable silent operation, removing this flag may be necessary to troubleshooting.
 ```bash
-curl --location --request GET 'https://<TrueNAS Host>/api/v2.0/pool/dataset/' <Authorization Header from Previous Step> --insecure | egrep '"encrypted": true' -B2
+curl --location --request GET <Authorization Header from Previous Step>  --url 'https://<TrueNAS Host>/api/v2.0/pool/dataset/' --insecure -s | head -n 5
 ```
 ### Building our API Call
 
@@ -73,7 +73,7 @@ curl --location --request GET 'https://<TrueNAS Host>/api/v2.0/pool/dataset/' <A
 
 Using the <a href="https://www.truenas.com/docs/hub/additional-topics/api/rest_api/">V2 REST API</a> documentation, we establish that we will need to use the <b>poolDatasetUnlockPost</b> which uses the following URI `/pool/dataset/unlock` and expects JSON payload. Unfortunately, understanding the payload schema can quickly became troublesome. The API documenation specifies that we need to supply an `id` and `unlock_options.datasets` which to me is ambiguous. Ontop of this, as long as you include `id` and `unlock_options` the API wouldn't return any helpful troubleshooting information, each response is a number that increased which each subsequent call. I'm not sure if this is a design choice or if there is a way to enable debug responses.
 
-Thankfully, we are able to view the source on our TrueNAS device or on the FreeNAS github page. The file that contain the method responsible for handling our API call `def unlock` can be found at `/usr/local/lib/python3.8/site-packages/middlewared/plugins/pool.py` or at https://github.com/freenas/freenas/blob/master/src/middlewared/middlewared/plugins/pool.py#L2259.
+Thankfully, we are able to view the source on our TrueNAS device or on the FreeNAS github page. The file that contain the method responsible for handling our API call `def unlock` can be found at `/usr/local/lib/python3.8/site-packages/middlewared/plugins/pool.py` or at [https://github.com/freenas/freenas/blob/master/src/middlewared/middlewared/plugins/pool.py#L2259](https://github.com/freenas/freenas/blob/master/src/middlewared/middlewared/plugins/pool.py#L2259).
 
 I will be referencing the sourcecode, however, I am refraining from posting a lengthy excerpt here to avoid any legal ramifications.
 
@@ -119,7 +119,7 @@ This is now enough data to formulate our payload, and we end up with the followi
 
 To test this call we will lock our dataset in the TrueNAS GUI under Pools then run the following in cURL and refresh the page. Once again, I will be saving the passphrase using `read` to avoid it showing in my console history and using the `--insecure` flag to bypass SSL verification.
 ```bash
-echo -n "Passphrase="; PASSPHRASE=`read -r -s -E`
+echo -n "Passphrase="; PASSPHRASE=`read -r -s -e`
 curl --location --request POST 'https://<TrueNAS Host>/api/v2.0/pool/dataset/unlock' \
     --header 'Content-Type: application/json' \
     <Authorization Header Goes Here> \
