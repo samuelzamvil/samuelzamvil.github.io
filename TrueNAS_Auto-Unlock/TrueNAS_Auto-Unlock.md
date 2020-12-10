@@ -12,7 +12,7 @@
 ---
 
 #### Credits to user ScubaMatt on the Lawrance Systems forum for coming up with a method for automatically decrypting a legacy encrypted pool. This setup will partially follow his setup instructions and rely on some of the scripts he wrote. 
-##### https://forums.lawrencesystems.com/t/freenas-automatic-decryption-on-boot/2586/5
+##### [https://forums.lawrencesystems.com/t/freenas-automatic-decryption-on-boot/2586/5](https://forums.lawrencesystems.com/t/freenas-automatic-decryption-on-boot/2586/5)
 
 ### Introduction
 
