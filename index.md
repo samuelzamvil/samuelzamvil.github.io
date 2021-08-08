@@ -6,7 +6,6 @@ My current title is Senior Systems Engineer but I see myself as a SysAdmin with 
 
 ---
 ## Blog Posts
-### 8/5/21 - [Using 3rd Party Modules in a macOS Python3 Script](/Using-3rd-Party-Modules-in-a-macOS-Python3-Script/Using-3rd-Party-Modules-in-a-macOS-Python3-Script.md)
 
 ### 12/10/20 - [MDT PSJoinDomain - A Better Domain Binding Experience in MDT Using Powershell](/PSJoinDomain/PSJoinDomain.md)
 

@@ -1,6 +1,5 @@
 # Using 3rd Party Modules in a macOS Python3 Script
 
-
 * [How it all started](#how-it-all-started)
 * [Installing Python3 with BASH](#installing-python3-with-bash)
 * [The Python Code](#building-our-api-call)
@@ -8,9 +7,11 @@
 
 ---
 
+### Removing this from visibility because running as root without a venv is potentially harmful to the OS. I've also realized that I could have used the --user flag in pip and it would've installed the packages required for the root user. I may revisit this blogpost at somepoint.
+
 ### How it all started
 
-I recently found myself in a scriting exam that required me to consume an API on an end-users machine and manipulate the data. For the exam I was given my choice of scripting languages to use, the smart and easy choice being BASH. Stubbornly, I chose Python. The task was easy enough that I was able write and test my script in relatively little time, as soon as I began to deploy the script I realized I was in for some trouble.
+I recently found myself in a scripting exam that required me to consume an API on an end-user's machine and manipulate the data. For the exam I was given my choice of scripting languages to use, the smart and easy choice being BASH. Stubbornly, I chose Python. The task was easy enough that I was able write and test my script in relatively little time, as soon as I began to deploy the script, I realized I was in for some trouble.
 
 #### I thought I had this all figured out in my head, but that thought process landed me in obscure territory.
 
@@ -20,7 +21,7 @@ My original intent was to use the version of Python3 installed on macOS Big Sur.
 
 Well, why not load the modules directly. I'm only using 3 modules anyway... requests, xmltodict, and dicttoxml... it couldn't be that hard, could it? Googlefu had me up and running in little to no time with the requests module and I was able to make my API calls, but my scripts were failing as soon as I tried to parse the response.
 
-What was happening... Well the xmltodict and dicttoxml modules were writting over 12 years ago and do not follow todays typical module structure. From what I can tell the two modules are stored as flat files. Where I was able to load requests using the ```LoadModuleFromPath``` method and the path ```'/Library/Python/3.8/site-packages/requests/__init__.py'```, I was unable to load xmltodict/dicttoxml using the same method with the two files stored as ```encoder.py``` and ```decoder.py```. The ```LoadModuleFromPath``` successfully loads both files but none of the class methods are available.
+What was happening... Well the xmltodict and dicttoxml modules were writing over 12 years ago and do not follow todays typical module structure. From what I can tell the two modules are stored as flat files. Where I was able to load requests using the ```LoadModuleFromPath``` method and the path ```'/Library/Python/3.8/site-packages/requests/__init__.py'```, I was unable to load xmltodict/dicttoxml using the same method with the two files stored as ```encoder.py``` and ```decoder.py```. The ```LoadModuleFromPath``` successfully loads both files but none of the class methods are available.
 
 #### Time is running out
 
@@ -34,7 +35,7 @@ Running in circles, I finally got my script working and the solution was way cle
 
 ### Installing Python3 with BASH
 
-I'm a little embarased to say this is about as easy as it gets.
+I'm a little embarrassed to say this is about as easy as it gets.
 
 ```bash
 # Download and install python3 if no previous install exists
@@ -50,8 +51,8 @@ fi
 
 ### The Python Code
 
-There's a couple ways to go about it so I will include both, you can either use a try catch statement or call pip3 everytime.
-The try catch method is a bit redundant because we can call ```subprocess.run()``` and not worry about the exit code causing a fatal error. I've also run into an issue where using ```pip3 uninstall``` on a module will cause ```import``` not to raise the ```ModuleNotFoundError```. So in general I'm going to call ```pip3 install``` everytime to avoid issues.
+There's a couple ways to go about it so I will include both, you can either use a try catch statement or call pip3 every time.
+The try catch method is a bit redundant because we can call ```subprocess.run()``` and not worry about the exit code causing a fatal error. I've also run into an issue where using ```pip3 uninstall``` on a module will cause ```import``` not to raise the ```ModuleNotFoundError```. So in general I'm going to call ```pip3 install``` every time to avoid issues.
 
 ```python
 import subprocess
@@ -86,8 +87,8 @@ Well, what if you don't want to fire your python script right then and there? We
 
 ```bash
 ScriptPath='/usr/local/<ChooseDirectoryName>/<YourScript>.py'
-# You can use cat or tee here, I am using tee for verbosity.
-# Make sure you include the '' around EOF, otherwise the shell will interprate any special characters
+# You can use cat or tee, I am using tee for verbosity.
+# Make sure you include the '' around EOF, otherwise the shell will interpret any special characters
 tee $ScriptPath << 'EOF'
 <Your Script Goes Here>
 EOF
@@ -140,4 +141,4 @@ launchctl bootstrap system $LaunchDaemonPath
 
 #### <font color=red>Disclaimer</font>
 
-This solution has not been tested in a production environment and I cannot comment on the longevity of this solution. However, from what I can tell there isn't anything here that would pose a security risk and the only best practive violation is not using a venv to install the packages and run the script.
+This solution has not been tested in a production environment and I cannot comment on the longevity of this solution. However, from what I can tell there isn't anything here that would pose a security risk and the only best practie violation is not using a venv to install the packages and run the script. 
