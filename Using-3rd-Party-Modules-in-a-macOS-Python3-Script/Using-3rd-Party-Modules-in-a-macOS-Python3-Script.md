@@ -35,6 +35,7 @@ My original intent was to use the version of Python3 installed on macOS Big Sur.
 Well, why not load the modules directly. I'm only using 3 modules anyway... requests, xmltodict, and dicttoxml... it couldn't be that hard, could it? Googlefu had me up and running in little to no time with the requests module and I was able to make my API calls, but my scripts were failing as soon as I tried to parse the response.
 
 What was happening... Well the xmltodict and dicttoxml modules were writing over 12 years ago and do not follow todays typical module structure. From what I can tell the two modules are stored as flat files. Where I was able to load requests using the ```LoadModuleFromPath``` method and the path ```'/Library/Python/3.8/site-packages/requests/__init__.py'```, I was unable to load xmltodict/dicttoxml using the same method with the two files stored as ```encoder.py``` and ```decoder.py```. The ```LoadModuleFromPath``` successfully loads both files but none of the class methods are available.
+<font color=red>I've since realized I was trying to import the wrong file, instead of importing the .py files I should have been using the compiled binaries(.pyc files) in 'site-packages/__pycache\_\_'.</font>
 
 #### Time is running out
 
