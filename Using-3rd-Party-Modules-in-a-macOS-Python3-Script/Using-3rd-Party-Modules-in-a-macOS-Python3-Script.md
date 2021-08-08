@@ -7,7 +7,22 @@
 
 ---
 
-### Removing this from visibility because running as root without a venv is potentially harmful to the OS. I've also realized that I could have used the --user flag in pip and it would've installed the packages required for the root user. I may revisit this blogpost at somepoint.
+## Edit 8/8/21
+I've realized that installing the python3 pkg is not necessary and the desired result can be accomplished with the XCode Command Line tools version of python3 installed at /usr/bin/python3. The correct way to install packages to that version and use them as root is to use the ```--user``` flag in pip.
+
+There is also a warning in python that running as root outside a venv with the system install can cause issues, I believe this warning is most likely for other unix systems since the install for macOS requires the addition Xcode command line tools install. Still there's no reason not to be cautious.
+
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+
+In the end, the best solution is going to be using a venv regardless of which version of python3 you are using.
+
+At somepoint I may revisit this post with instructions on using a venv
+
+#### <font color=red>Disclaimer</font>
+
+This solution has not been tested in a production environment and I cannot comment on the longevity of this solution. However, from what I can tell there isn't anything here that would pose a security risk and the only best practie violation is not using a venv to install the packages and run the script.
+
+Please be aware installing modules outside of a venv can cause issues with preexisting installations and users that require a specific version of a module be installed.
 
 ### How it all started
 
@@ -138,7 +153,3 @@ chown root:wheel $LaunchDaemonPath
 # Start the daemon
 launchctl bootstrap system $LaunchDaemonPath
 ```
-
-#### <font color=red>Disclaimer</font>
-
-This solution has not been tested in a production environment and I cannot comment on the longevity of this solution. However, from what I can tell there isn't anything here that would pose a security risk and the only best practie violation is not using a venv to install the packages and run the script. 
