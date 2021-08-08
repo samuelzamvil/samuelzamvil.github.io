@@ -12,11 +12,9 @@ I've realized that installing the python3 pkg is not necessary and the desired r
 
 There is also a warning in python that running as root outside a venv with the system install can cause issues, I believe this warning is most likely for other unix systems since the install for macOS requires the addition Xcode command line tools install. Still there's no reason not to be cautious.
 
-WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
-
 In the end, the best solution is going to be using a venv regardless of which version of python3 you are using.
 
-At somepoint I may revisit this post with instructions on using a venv
+At somepoint I may revisit this post with instructions on using a venv.
 
 #### <font color=red>Disclaimer</font>
 
