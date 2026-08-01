@@ -41,9 +41,9 @@ footer-links:
 #   3. Get the two IDs from https://giscus.app and paste them below
 giscus:
   repo: samuelzamvil/samuelzamvil.github.io
-  repo_id:
+  repo_id: R_kgDOExgxlQ
   category: Announcements
-  category_id:
+  category_id: DIC_kwDOExgxlc4DCbzh
   mapping: pathname
   theme: light
 
