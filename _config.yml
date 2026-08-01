@@ -86,4 +86,5 @@ exclude:
   - README.md
   - CNAME
 
-theme: jekyll-theme-hacker
+# Layout lives in _layouts/aol.html with styles in assets/css/aol.css,
+# so no external theme gem is needed. (Was: jekyll-theme-hacker.)

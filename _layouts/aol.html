@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.home %}Welcome{% else %}{{ page.title }}{% endif %} &mdash; America Online</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<link rel="stylesheet" href="{{ '/assets/css/aol.css' | relative_url }}">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%231a4b9c'/><polygon points='4,3 13,8 4,13' fill='%23fc0'/></svg>">
+</head>
+<body>
+
+{% assign entries = site.pages | where: "channel", true | sort: "date" | reverse %}
+
+<div class="window">
+
+  <div class="titlebar">
+    <svg class="mark" width="20" height="16" viewBox="0 0 20 16" aria-hidden="true">
+      <polygon points="1,1 19,8 1,15" fill="#ffcc00" stroke="#000" stroke-width="1"/>
+    </svg>
+    <span class="tb-text">America Online &mdash; {% if page.home %}Welcome, Sam!{% else %}{{ page.title }}{% endif %}</span>
+    <span class="tb-buttons"><span>_</span><span>&#9633;</span><span>&#10005;</span></span>
+  </div>
+
+  <div class="menubar">
+    <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>G</u>o To</span>
+    <span><u>M</u>ail</span><span>M<u>e</u>mbers</span><span><u>W</u>indow</span><span><u>H</u>elp</span>
+  </div>
+
+  <div class="toolbar">
+    <a class="tbtn" href="{{ '/' | relative_url }}"><span class="glyph">&#8962;</span>Welcome</a>
+    <a class="tbtn" href="{{ '/' | relative_url }}#blog-posts"><span class="glyph">&#9635;</span>Channels</a>
+    <a class="tbtn" href="https://github.com/{{ site['footer-links'].github }}"><span class="glyph">&#9670;</span>My Web</a>
+    <a class="tbtn" href="https://www.linkedin.com/in/{{ site['footer-links'].linkedin }}"><span class="glyph">&#9679;</span>People</a>
+    <a class="tbtn" href="{{ '/' | relative_url }}#about-me"><span class="glyph">&#9733;</span>Profile</a>
+    <a class="tbtn" href="{{ '/' | relative_url }}"><span class="glyph">&#9993;</span>Mail</a>
+    <a class="tbtn" href="{{ '/' | relative_url }}"><span class="glyph">?</span>Help</a>
+  </div>
+
+  <div class="workspace">
+
+    <div class="panel">
+      <div class="panel-title">
+        <svg width="13" height="11" viewBox="0 0 20 16" aria-hidden="true">
+          <polygon points="1,1 19,8 1,15" fill="#ffcc00" stroke="#000" stroke-width="1"/>
+        </svg>
+        {% if page.home %}Welcome!{% else %}{{ page.title }}{% endif %}
+      </div>
+
+      <div class="panel-body">
+
+        {% if page.home %}
+        <div class="welcome">
+          <svg width="150" height="46" viewBox="0 0 150 46" role="img" aria-label="America Online">
+            <polygon points="4,4 30,23 4,42" fill="#ffcc00" stroke="#000" stroke-width="2"/>
+            <text x="38" y="20" fill="#fff" font-family="Arial Black, Arial, sans-serif"
+                  font-size="17" font-weight="bold">AMERICA</text>
+            <text x="38" y="38" fill="#ffcc00" font-family="Arial Black, Arial, sans-serif"
+                  font-size="17" font-weight="bold">ONLINE</text>
+          </svg>
+          <h1>Welcome, Sam!</h1>
+          <p>You have <strong>{{ entries | size }}</strong> new articles waiting. Connected at 28.8 kbps.</p>
+        </div>
+        {% capture ticker %}*** WELCOME TO AMERICA ONLINE *** &bull; You've Got Mail! &bull; Keyword: SYSADMIN &bull; {{ entries | size }} articles online now &bull; Please do not pick up the telephone.{% endcapture %}
+        <div class="ticker">
+          <div class="ticker-track">
+            <span>{{ ticker }}</span>
+            <span aria-hidden="true">{{ ticker }}</span>
+          </div>
+        </div>
+        {% endif %}
+
+        <article class="content">
+          {% unless page.home %}
+          <p class="dateline">
+            {% if page.date %}Published {{ page.date | date: "%-d %B %Y" }}{% endif %}
+            {%- if page.updated %} &middot; Updated {{ page.updated | date: "%-d %B %Y" }}{% endif %}
+          </p>
+          {% endunless %}
+          {{ content }}
+        </article>
+
+      </div>
+    </div>
+
+    <aside class="channels">
+      <h2>Channels</h2>
+      <ul>
+        <li><a href="{{ '/' | relative_url }}">&#8962;&nbsp; Welcome Screen</a></li>
+        {% for entry in entries %}
+        <li>
+          <a href="{{ entry.url | relative_url }}">
+            {{ entry.short_title | default: entry.title }}
+            <span class="date">{{ entry.date | date: "%-d %b %Y" }}</span>
+          </a>
+        </li>
+        {% endfor %}
+        <li><a href="https://github.com/{{ site['footer-links'].github }}">&#9670;&nbsp; GitHub</a></li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <div class="statusbar">
+    <span class="grow">{% if page.home %}Welcome Screen{% else %}{{ page.title }}{% endif %}</span>
+    <span>Online</span>
+    <span>28.8k</span>
+  </div>
+
+</div>
+
+</body>
+</html>

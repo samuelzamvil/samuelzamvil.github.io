@@ -1,0 +1,433 @@
+/* ==========================================================================
+   America Online, circa 1995.
+   Windows 95 chrome, AOL blue, and absolutely no restraint.
+   ========================================================================== */
+
+:root {
+  --gray:      #c0c0c0;
+  --gray-lt:   #dfdfdf;
+  --gray-dk:   #808080;
+  --navy:      #000080;
+  --navy-lt:   #1084d0;
+  --aol-blue:  #1a4b9c;
+  --aol-gold:  #ffcc00;
+  --link:      #0000ee;
+  --visited:   #551a8b;
+  --paper:     #ffffff;
+  --ink:       #000000;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 14px;
+  background: #008080;             /* the one true desktop teal */
+  font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* --- Win95 bevels --------------------------------------------------------- */
+
+.raised {
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.sunken {
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk), inset -1px -1px 0 var(--gray-lt);
+}
+
+/* --- Application window --------------------------------------------------- */
+
+.window {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 3px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk),
+              inset  1px  1px 0 var(--gray-lt),
+              5px 5px 0 rgba(0, 0, 0, .35);
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 3px 3px 5px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy-lt) 100%);
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: .02em;
+}
+
+.titlebar .mark { flex: 0 0 auto; display: block; }
+
+/* min-width:0 is load-bearing: without it the flex item refuses to shrink
+   below its text width and drags the whole window wider than the viewport. */
+.titlebar .tb-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tb-buttons { display: flex; gap: 3px; }
+
+.tb-buttons span {
+  width: 20px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  background: var(--gray);
+  color: #000;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+}
+
+/* --- Menu + toolbar ------------------------------------------------------- */
+
+.menubar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 3px 4px;
+  font-size: 13px;
+}
+
+.menubar span { padding: 1px 7px; }
+.menubar span:hover { background: var(--navy); color: #fff; }
+.menubar u { text-decoration: underline; }
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 5px;
+  margin: 0 2px 3px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.tbtn {
+  min-width: 58px;
+  padding: 4px 6px 3px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.2;
+  color: #000;
+  text-decoration: none;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.tbtn .glyph { display: block; font-size: 17px; line-height: 1.1; color: var(--aol-blue); }
+.tbtn:active { border-color: #000 #fff #fff #000; box-shadow: inset 1px 1px 0 var(--gray-dk); }
+
+/* --- Workspace ------------------------------------------------------------ */
+
+.workspace {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px;
+  margin: 0 2px;
+  background: #008080;
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk);
+}
+
+/* --- Inner panel (the "document window") ---------------------------------- */
+
+.panel {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 2px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy-lt) 100%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.panel-body {
+  padding: 16px 18px 22px;
+  background: var(--paper);
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk);
+  overflow-wrap: break-word;
+}
+
+/* --- Welcome splash (home only) ------------------------------------------- */
+
+.welcome {
+  margin: -16px -18px 18px;
+  padding: 18px 18px 16px;
+  background: linear-gradient(180deg, #1a4b9c 0%, #0d2f6b 100%);
+  color: #fff;
+  text-align: center;
+  border-bottom: 2px solid #000;
+}
+
+.welcome h1 {
+  margin: 10px 0 4px;
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--aol-gold);
+  text-shadow: 2px 2px 0 #000;
+}
+
+.welcome p { margin: 0; font-size: 13px; color: #cfe0ff; }
+
+.ticker {
+  margin: 12px 2px 0;
+  padding: 3px 0;
+  background: #000;
+  color: #00ff00;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+}
+
+/* The message is duplicated in the markup so the track can loop at -50%
+   seamlessly and there is never a stretch of empty bar. */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 34s linear infinite;
+}
+
+.ticker-track span { padding-right: 64px; white-space: nowrap; }
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
+
+/* --- Channels sidebar ----------------------------------------------------- */
+
+.channels {
+  flex: 0 0 186px;
+  padding: 2px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.channels h2 {
+  margin: 0;
+  padding: 3px 6px;
+  font-size: 12px;
+  color: #fff;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy-lt) 100%);
+}
+
+.channels ul { margin: 0; padding: 6px; list-style: none; }
+.channels li { margin-bottom: 5px; }
+
+.channels a {
+  display: block;
+  padding: 6px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.25;
+  color: #000;
+  text-decoration: none;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.channels a:hover { background: #d8d8d8; }
+.channels a:active { border-color: #000 #fff #fff #000; box-shadow: inset 1px 1px 0 var(--gray-dk); }
+.channels .date { display: block; font-weight: normal; font-size: 10px; color: #404040; }
+
+/* --- Status bar ----------------------------------------------------------- */
+
+.statusbar {
+  display: flex;
+  gap: 4px;
+  padding: 3px 2px 1px;
+  font-size: 11px;
+}
+
+.statusbar span {
+  padding: 2px 7px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+}
+
+.statusbar .grow {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Post content --------------------------------------------------------- */
+
+.content { font-size: 14px; }
+
+.dateline {
+  margin: -6px 0 16px;
+  padding-bottom: 8px;
+  font-size: 12px;
+  color: #444;
+  border-bottom: 1px dotted var(--gray-dk);
+}
+
+.content h1, .content h2, .content h3, .content h4 {
+  margin: 26px 0 8px;
+  line-height: 1.25;
+  color: var(--aol-blue);
+}
+
+.content h2 {
+  font-size: 19px;
+  padding-bottom: 3px;
+  border-bottom: 2px solid var(--aol-blue);
+}
+
+.content h3 { font-size: 16px; }
+.content h4 { font-size: 14px; color: #333; }
+.content > *:first-child { margin-top: 0; }
+
+.content p { margin: 0 0 12px; }
+
+.content a { color: var(--link); }
+.content a:visited { color: var(--visited); }
+
+.content ul, .content ol { margin: 0 0 12px; padding-left: 26px; }
+.content li { margin-bottom: 3px; }
+
+.content img {
+  max-width: 100%;
+  height: auto;
+  padding: 3px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+}
+
+.content hr {
+  height: 2px;
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid var(--gray-dk);
+  border-bottom: 1px solid #fff;
+}
+
+/* Blockquotes double as AOL "notice" boxes */
+.content blockquote {
+  margin: 0 0 14px;
+  padding: 10px 13px;
+  background: #ffffe1;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  border-left: 5px solid var(--aol-gold);
+}
+
+.content blockquote > *:last-child { margin-bottom: 0; }
+
+/* Code */
+.content code {
+  padding: 0 3px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  background: #eee;
+  border: 1px solid #cfcfcf;
+}
+
+.content pre {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  background: var(--paper);
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk);
+}
+
+.content pre code {
+  padding: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  background: none;
+  border: 0;
+  white-space: pre;
+}
+
+/* Tables */
+.content table {
+  width: 100%;
+  margin: 0 0 14px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.content th, .content td {
+  padding: 5px 8px;
+  text-align: left;
+  border: 1px solid var(--gray-dk);
+}
+
+.content th { background: var(--gray); }
+.content tbody tr:nth-child(even) { background: #f2f2f2; }
+
+/* Anything wide gets its own scroller rather than blowing out the page */
+.table-scroll { overflow-x: auto; }
+
+/* --- Narrow screens ------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  body { padding: 6px; }
+  /* align-items:flex-start is right for the two-column desktop layout, but in
+     a column flex container it makes children fit-content on the cross axis,
+     which lets wide content (the ticker) stretch the panel past the viewport. */
+  .workspace { flex-direction: column; align-items: stretch; }
+  .channels { flex: 1 1 auto; width: 100%; }
+  .panel-body { padding: 13px 13px 18px; }
+  .welcome { margin: -13px -13px 14px; }
+  .welcome h1 { font-size: 23px; }
+  .menubar { font-size: 12px; }
+}

@@ -1,6 +1,12 @@
-# MDT PSJoinDomain - A Better Domain Binding Experience in MDT Using PowerShell
-
-*Published 10 December 2020*
+---
+layout: aol
+title: "MDT PSJoinDomain - A Better Domain Binding Experience in MDT Using PowerShell"
+short_title: "MDT PSJoinDomain"
+description: "A PowerShell replacement for MDT's ZTIDomainJoin.wsf that avoids the reboot, adds a retry prompt, and sets a task sequence variable you can filter on."
+permalink: /PSJoinDomain/
+date: 2020-12-10
+channel: true
+---
 
 * [Introduction](#introduction)
 * [Advantages of my replacement](#advantages-of-my-replacement)
