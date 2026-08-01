@@ -1,0 +1,51 @@
+# AOL Keywords. Rendered as a table on /keywords/ and injected into
+# assets/js/aol.js so the toolbar Keyword box actually resolves them.
+# `url` navigates. `action` fires an easter egg instead.
+
+- keyword: POWERSHELL
+  url: /PSJoinDomain/
+  blurb: Domain binding in MDT without the reboot
+
+- keyword: MDT
+  url: /PSJoinDomain/
+  blurb: Microsoft Deployment Toolkit task sequences
+
+- keyword: TRUENAS
+  url: /TrueNAS_Auto-Unlock/
+  blurb: Auto-unlocking an encrypted dataset at boot
+
+- keyword: FREENAS
+  url: /TrueNAS_Auto-Unlock/
+  blurb: See TRUENAS
+
+- keyword: PYTHON
+  url: /Using-3rd-Party-Modules-in-a-macOS-Python3-Script/
+  blurb: Third party modules on a locked-down Mac
+
+- keyword: MACOS
+  url: /Using-3rd-Party-Modules-in-a-macOS-Python3-Script/
+  blurb: Launch daemons and pip on macOS
+
+- keyword: SYSADMIN
+  url: /
+  blurb: Everything on this site, basically
+
+- keyword: ABOUT
+  url: /about/
+  blurb: Who is running this thing
+
+- keyword: GUESTBOOK
+  url: /guestbook/
+  blurb: Sign my guestbook!
+
+- keyword: MAIL
+  action: mail
+  blurb: Check your mail
+
+- keyword: GOODBYE
+  action: goodbye
+  blurb: Sign off from America Online
+
+- keyword: UPGRADE
+  action: upgrade
+  blurb: Order 50 free hours on CD-ROM

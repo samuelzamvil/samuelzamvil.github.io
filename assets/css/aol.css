@@ -141,6 +141,64 @@ body {
 .tbtn .glyph { display: block; font-size: 17px; line-height: 1.1; color: var(--aol-blue); }
 .tbtn:active { border-color: #000 #fff #fff #000; box-shadow: inset 1px 1px 0 var(--gray-dk); }
 
+/* --- Shared Win95 button -------------------------------------------------- */
+
+.w95-btn {
+  min-width: 64px;
+  padding: 3px 12px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #000;
+  cursor: pointer;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.w95-btn:active { border-color: #000 #fff #fff #000; box-shadow: inset 1px 1px 0 var(--gray-dk); }
+.w95-btn:focus-visible { outline: 1px dotted #000; outline-offset: -5px; }
+
+/* --- Keyword box ---------------------------------------------------------- */
+
+.keyword-form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding-left: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.keyword-form input {
+  width: 130px;
+  padding: 3px 5px;
+  font-family: inherit;
+  font-size: 12px;
+  background: #fff;
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk);
+}
+
+.keyword-form .w95-btn { min-width: 38px; padding: 3px 8px; }
+
+/* Close button in the title bar is a real button now */
+.tb-close {
+  width: 20px;
+  height: 18px;
+  padding: 0;
+  font: bold 11px/1 inherit;
+  color: #000;
+  cursor: pointer;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+}
+
+.tb-close:active { border-color: #000 #fff #fff #000; }
+
 /* --- Workspace ------------------------------------------------------------ */
 
 .workspace {
@@ -417,6 +475,122 @@ body {
 /* Anything wide gets its own scroller rather than blowing out the page */
 .table-scroll { overflow-x: auto; }
 
+/* --- Dialogs and overlays ------------------------------------------------- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(0, 0, 32, .45);
+}
+
+.dialog {
+  width: min(440px, 100%);
+  padding: 3px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt),
+              5px 5px 0 rgba(0, 0, 0, .4);
+}
+
+.dialog-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 4px 3px 6px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy-lt) 100%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.dialog-x {
+  width: 20px; height: 18px; padding: 0;
+  font: bold 11px/1 inherit; cursor: pointer;
+  background: var(--gray);
+  border: 2px solid; border-color: #fff #000 #000 #fff;
+}
+
+.dialog-body { padding: 16px 14px; background: var(--gray); }
+.dialog-body p { margin: 0 0 9px; }
+.dialog-body p:last-child { margin-bottom: 0; }
+.dialog-body hr { border: 0; border-top: 1px solid var(--gray-dk); border-bottom: 1px solid #fff; margin: 9px 0; }
+
+.dialog-buttons { display: flex; justify-content: center; gap: 8px; padding: 4px 10px 12px; background: var(--gray); }
+
+.dlg-row { display: flex; gap: 14px; align-items: flex-start; }
+.dlg-icon { flex: 0 0 auto; font-size: 34px; line-height: 1; color: var(--aol-blue); }
+.dlg-shout { font-size: 19px; font-weight: bold; color: var(--aol-blue); }
+.dlg-small { font-size: 11px; color: #333; }
+
+.goodbye {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(180deg, #1a4b9c 0%, #06183c 100%);
+}
+
+.goodbye-word {
+  margin: 0 0 10px;
+  font-size: 46px;
+  font-weight: bold;
+  color: var(--aol-gold);
+  text-shadow: 3px 3px 0 #000;
+}
+
+.goodbye .dlg-small { color: #a9c3ea; }
+.goodbye .w95-btn { margin-top: 18px; }
+
+/* --- 90s page furniture (for use inside post content) --------------------- */
+
+.badge {
+  margin: 8px 6px 6px;
+  padding: 5px;
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.3;
+  background: #000;
+  color: #0f0;
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+}
+
+.content .construction {
+  margin: 0 0 16px;
+  padding: 9px 12px;
+  text-align: center;
+  font-weight: bold;
+  background: repeating-linear-gradient(45deg, #ffe14d 0 12px, #333 12px 24px);
+  border: 2px solid #000;
+}
+
+.content .construction span {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #fff;
+  border: 1px solid #000;
+}
+
+.content .kw-table td:first-child { width: 1%; white-space: nowrap; font-weight: bold; }
+.content .kw-table a { font-weight: bold; }
+
+.content .signature {
+  margin-top: 22px;
+  padding-top: 12px;
+  font-size: 12px;
+  color: #444;
+  border-top: 1px dotted var(--gray-dk);
+}
+
 /* --- Narrow screens ------------------------------------------------------- */
 
 @media (max-width: 760px) {
@@ -430,4 +604,7 @@ body {
   .welcome { margin: -13px -13px 14px; }
   .welcome h1 { font-size: 23px; }
   .menubar { font-size: 12px; }
+  .keyword-form { margin-left: 0; padding-left: 0; width: 100%; }
+  .keyword-form input { flex: 1 1 auto; min-width: 0; width: auto; }
+  .goodbye-word { font-size: 34px; }
 }
