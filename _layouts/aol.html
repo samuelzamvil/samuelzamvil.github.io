@@ -88,6 +88,10 @@
           {{ content }}
         </article>
 
+        {% if page.comments %}
+          {% include comments.html title=page.comments_title %}
+        {% endif %}
+
       </div>
     </div>
 

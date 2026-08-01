@@ -591,6 +591,26 @@ body {
   border-top: 1px dotted var(--gray-dk);
 }
 
+/* --- Comments ------------------------------------------------------------- */
+
+.comments-panel {
+  margin: 26px -18px -22px;
+  padding: 2px;
+  background: var(--gray);
+  border-top: 2px solid #000;
+}
+
+.comments-body {
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk);
+}
+
+.comments-body .comments-off { margin: 0; font-size: 13px; }
+.comments-body .comments-off code { font-family: "Courier New", Courier, monospace; }
+
 /* --- Narrow screens ------------------------------------------------------- */
 
 @media (max-width: 760px) {
@@ -604,6 +624,7 @@ body {
   .welcome { margin: -13px -13px 14px; }
   .welcome h1 { font-size: 23px; }
   .menubar { font-size: 12px; }
+  .comments-panel { margin: 22px -13px -18px; }
   .keyword-form { margin-left: 0; padding-left: 0; width: 100%; }
   .keyword-form input { flex: 1 1 auto; min-width: 0; width: auto; }
   .goodbye-word { font-size: 34px; }

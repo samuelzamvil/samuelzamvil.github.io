@@ -1,0 +1,52 @@
+{% comment %}
+  giscus — comments backed by GitHub Discussions on this repo.
+
+  Renders only once both IDs are filled in under `giscus:` in _config.yml.
+  Until then it shows a short note instead of failing silently, so a page
+  that expects comments never just looks broken.
+
+  Setup, once:
+    1. Enable Discussions:  Settings > General > Features > Discussions
+    2. Install the giscus app: https://github.com/apps/giscus
+    3. Visit https://giscus.app, enter this repo, pick a Discussion
+       category, and copy the data-repo-id and data-category-id it gives
+       you into _config.yml.
+{% endcomment %}
+
+<div class="comments-panel">
+  <div class="panel-title">
+    <svg width="13" height="11" viewBox="0 0 20 16" aria-hidden="true">
+      <polygon points="1,1 19,8 1,15" fill="#ffcc00" stroke="#000" stroke-width="1"/>
+    </svg>
+    {{ include.title | default: "Post Your Comment" }}
+  </div>
+  <div class="comments-body">
+    {% if site.giscus.repo_id and site.giscus.category_id %}
+      <script src="https://giscus.app/client.js"
+              data-repo="{{ site.giscus.repo }}"
+              data-repo-id="{{ site.giscus.repo_id }}"
+              data-category="{{ site.giscus.category }}"
+              data-category-id="{{ site.giscus.category_id }}"
+              data-mapping="{{ site.giscus.mapping | default: 'pathname' }}"
+              data-strict="1"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="top"
+              data-theme="{{ site.giscus.theme | default: 'light' }}"
+              data-lang="en"
+              data-loading="lazy"
+              crossorigin="anonymous"
+              async>
+      </script>
+      <noscript>
+        <p>Comments need JavaScript. You can also
+        <a href="https://github.com/{{ site.giscus.repo }}/discussions">post in Discussions directly</a>.</p>
+      </noscript>
+    {% else %}
+      <p class="comments-off"><strong>Comments aren't switched on yet.</strong>
+      Once giscus is configured in <code>_config.yml</code>, this box becomes a real
+      thread backed by GitHub Discussions. Until then, say it in
+      <a href="https://github.com/{{ site.giscus.repo | default: 'samuelzamvil/samuelzamvil.github.io' }}/issues/new">an issue</a>.</p>
+    {% endif %}
+  </div>
+</div>

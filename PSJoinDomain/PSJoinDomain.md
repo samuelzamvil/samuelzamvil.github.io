@@ -6,6 +6,7 @@ description: "A PowerShell replacement for MDT's ZTIDomainJoin.wsf that avoids t
 permalink: /PSJoinDomain/
 date: 2020-12-10
 channel: true
+comments: true
 ---
 
 * [Introduction](#introduction)

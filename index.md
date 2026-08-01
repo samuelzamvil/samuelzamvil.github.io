@@ -15,6 +15,10 @@ My current title is Senior Systems Engineer, but I see myself as a SysAdmin with
 
 ## Blog Posts
 
+### [I Asked for a Typo Pass and Got America Online](/Typo-Pass-to-AOL/)
+
+*1 August 2026* — Five years of nothing, then 190 words of prompting. Every message I sent, what came back, and the parts that went sideways.
+
 ### [Using 3rd Party Modules in a macOS Python3 Script](/Using-3rd-Party-Modules-in-a-macOS-Python3-Script/)
 
 *5 August 2021* — Getting `requests`, `xmltodict`, and `dicttoxml` onto an end-user's Mac when the system Python can't see them, plus running the finished script as a launch daemon.

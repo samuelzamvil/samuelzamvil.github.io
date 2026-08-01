@@ -7,6 +7,7 @@ permalink: /Using-3rd-Party-Modules-in-a-macOS-Python3-Script/
 date: 2021-08-05
 updated: 2021-08-08
 channel: true
+comments: true
 ---
 
 * [Edit 8/8/21](#edit-8821)

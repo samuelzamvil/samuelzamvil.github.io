@@ -6,6 +6,7 @@ description: "Reading the middleware source to work out the v2 API's unlock payl
 permalink: /TrueNAS_Auto-Unlock/
 date: 2020-12-10
 channel: true
+comments: true
 ---
 
 * [Introduction](#introduction)
