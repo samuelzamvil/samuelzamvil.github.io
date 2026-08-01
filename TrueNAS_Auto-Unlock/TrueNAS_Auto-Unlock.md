@@ -1,6 +1,13 @@
-# Using a Raspberry Pi and the TrueNAS v2 REST API to Auto-Unlock a Passphrase-Encrypted Dataset at Startup
-
-*Published 10 December 2020*
+---
+layout: aol
+title: "Using a Raspberry Pi and the TrueNAS v2 REST API to Auto-Unlock a Passphrase-Encrypted Dataset at Startup"
+short_title: "TrueNAS Auto-Unlock"
+description: "Reading the middleware source to work out the v2 API's unlock payload, so a Raspberry Pi holding the passphrase can decrypt a dataset at boot."
+permalink: /TrueNAS_Auto-Unlock/
+date: 2020-12-10
+channel: true
+comments: true
+---
 
 * [Introduction](#introduction)
 * [Disclaimer](#disclaimer)

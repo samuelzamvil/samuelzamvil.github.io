@@ -1,6 +1,14 @@
-# Using 3rd Party Modules in a macOS Python3 Script
-
-*Published 5 August 2021 · Updated 8 August 2021*
+---
+layout: aol
+title: "Using 3rd Party Modules in a macOS Python3 Script"
+short_title: "3rd Party Modules in macOS Python3"
+description: "Getting requests, xmltodict, and dicttoxml onto an end-user's Mac when the system Python can't see them, plus running the finished script as a launch daemon."
+permalink: /Using-3rd-Party-Modules-in-a-macOS-Python3-Script/
+date: 2021-08-05
+updated: 2021-08-08
+channel: true
+comments: true
+---
 
 * [Edit 8/8/21](#edit-8821)
 * [Disclaimer](#disclaimer)

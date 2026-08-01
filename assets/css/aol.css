@@ -1,0 +1,631 @@
+/* ==========================================================================
+   America Online, circa 1995.
+   Windows 95 chrome, AOL blue, and absolutely no restraint.
+   ========================================================================== */
+
+:root {
+  --gray:      #c0c0c0;
+  --gray-lt:   #dfdfdf;
+  --gray-dk:   #808080;
+  --navy:      #000080;
+  --navy-lt:   #1084d0;
+  --aol-blue:  #1a4b9c;
+  --aol-gold:  #ffcc00;
+  --link:      #0000ee;
+  --visited:   #551a8b;
+  --paper:     #ffffff;
+  --ink:       #000000;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 14px;
+  background: #008080;             /* the one true desktop teal */
+  font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* --- Win95 bevels --------------------------------------------------------- */
+
+.raised {
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.sunken {
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk), inset -1px -1px 0 var(--gray-lt);
+}
+
+/* --- Application window --------------------------------------------------- */
+
+.window {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 3px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk),
+              inset  1px  1px 0 var(--gray-lt),
+              5px 5px 0 rgba(0, 0, 0, .35);
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 3px 3px 5px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy-lt) 100%);
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: .02em;
+}
+
+.titlebar .mark { flex: 0 0 auto; display: block; }
+
+/* min-width:0 is load-bearing: without it the flex item refuses to shrink
+   below its text width and drags the whole window wider than the viewport. */
+.titlebar .tb-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tb-buttons { display: flex; gap: 3px; }
+
+.tb-buttons span {
+  width: 20px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  background: var(--gray);
+  color: #000;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+}
+
+/* --- Menu + toolbar ------------------------------------------------------- */
+
+.menubar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 3px 4px;
+  font-size: 13px;
+}
+
+.menubar span { padding: 1px 7px; }
+.menubar span:hover { background: var(--navy); color: #fff; }
+.menubar u { text-decoration: underline; }
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 5px;
+  margin: 0 2px 3px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.tbtn {
+  min-width: 58px;
+  padding: 4px 6px 3px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.2;
+  color: #000;
+  text-decoration: none;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.tbtn .glyph { display: block; font-size: 17px; line-height: 1.1; color: var(--aol-blue); }
+.tbtn:active { border-color: #000 #fff #fff #000; box-shadow: inset 1px 1px 0 var(--gray-dk); }
+
+/* --- Shared Win95 button -------------------------------------------------- */
+
+.w95-btn {
+  min-width: 64px;
+  padding: 3px 12px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #000;
+  cursor: pointer;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.w95-btn:active { border-color: #000 #fff #fff #000; box-shadow: inset 1px 1px 0 var(--gray-dk); }
+.w95-btn:focus-visible { outline: 1px dotted #000; outline-offset: -5px; }
+
+/* --- Keyword box ---------------------------------------------------------- */
+
+.keyword-form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding-left: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.keyword-form input {
+  width: 130px;
+  padding: 3px 5px;
+  font-family: inherit;
+  font-size: 12px;
+  background: #fff;
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk);
+}
+
+.keyword-form .w95-btn { min-width: 38px; padding: 3px 8px; }
+
+/* Close button in the title bar is a real button now */
+.tb-close {
+  width: 20px;
+  height: 18px;
+  padding: 0;
+  font: bold 11px/1 inherit;
+  color: #000;
+  cursor: pointer;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+}
+
+.tb-close:active { border-color: #000 #fff #fff #000; }
+
+/* --- Workspace ------------------------------------------------------------ */
+
+.workspace {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px;
+  margin: 0 2px;
+  background: #008080;
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk);
+}
+
+/* --- Inner panel (the "document window") ---------------------------------- */
+
+.panel {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 2px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy-lt) 100%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.panel-body {
+  padding: 16px 18px 22px;
+  background: var(--paper);
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk);
+  overflow-wrap: break-word;
+}
+
+/* --- Welcome splash (home only) ------------------------------------------- */
+
+.welcome {
+  margin: -16px -18px 18px;
+  padding: 18px 18px 16px;
+  background: linear-gradient(180deg, #1a4b9c 0%, #0d2f6b 100%);
+  color: #fff;
+  text-align: center;
+  border-bottom: 2px solid #000;
+}
+
+.welcome h1 {
+  margin: 10px 0 4px;
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--aol-gold);
+  text-shadow: 2px 2px 0 #000;
+}
+
+.welcome p { margin: 0; font-size: 13px; color: #cfe0ff; }
+
+.ticker {
+  margin: 12px 2px 0;
+  padding: 3px 0;
+  background: #000;
+  color: #00ff00;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+}
+
+/* The message is duplicated in the markup so the track can loop at -50%
+   seamlessly and there is never a stretch of empty bar. */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 34s linear infinite;
+}
+
+.ticker-track span { padding-right: 64px; white-space: nowrap; }
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
+
+/* --- Channels sidebar ----------------------------------------------------- */
+
+.channels {
+  flex: 0 0 186px;
+  padding: 2px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.channels h2 {
+  margin: 0;
+  padding: 3px 6px;
+  font-size: 12px;
+  color: #fff;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy-lt) 100%);
+}
+
+.channels ul { margin: 0; padding: 6px; list-style: none; }
+.channels li { margin-bottom: 5px; }
+
+.channels a {
+  display: block;
+  padding: 6px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.25;
+  color: #000;
+  text-decoration: none;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt);
+}
+
+.channels a:hover { background: #d8d8d8; }
+.channels a:active { border-color: #000 #fff #fff #000; box-shadow: inset 1px 1px 0 var(--gray-dk); }
+.channels .date { display: block; font-weight: normal; font-size: 10px; color: #404040; }
+
+/* --- Status bar ----------------------------------------------------------- */
+
+.statusbar {
+  display: flex;
+  gap: 4px;
+  padding: 3px 2px 1px;
+  font-size: 11px;
+}
+
+.statusbar span {
+  padding: 2px 7px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+}
+
+.statusbar .grow {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Post content --------------------------------------------------------- */
+
+.content { font-size: 14px; }
+
+.dateline {
+  margin: -6px 0 16px;
+  padding-bottom: 8px;
+  font-size: 12px;
+  color: #444;
+  border-bottom: 1px dotted var(--gray-dk);
+}
+
+.content h1, .content h2, .content h3, .content h4 {
+  margin: 26px 0 8px;
+  line-height: 1.25;
+  color: var(--aol-blue);
+}
+
+.content h2 {
+  font-size: 19px;
+  padding-bottom: 3px;
+  border-bottom: 2px solid var(--aol-blue);
+}
+
+.content h3 { font-size: 16px; }
+.content h4 { font-size: 14px; color: #333; }
+.content > *:first-child { margin-top: 0; }
+
+.content p { margin: 0 0 12px; }
+
+.content a { color: var(--link); }
+.content a:visited { color: var(--visited); }
+
+.content ul, .content ol { margin: 0 0 12px; padding-left: 26px; }
+.content li { margin-bottom: 3px; }
+
+.content img {
+  max-width: 100%;
+  height: auto;
+  padding: 3px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+}
+
+.content hr {
+  height: 2px;
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid var(--gray-dk);
+  border-bottom: 1px solid #fff;
+}
+
+/* Blockquotes double as AOL "notice" boxes */
+.content blockquote {
+  margin: 0 0 14px;
+  padding: 10px 13px;
+  background: #ffffe1;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  border-left: 5px solid var(--aol-gold);
+}
+
+.content blockquote > *:last-child { margin-bottom: 0; }
+
+/* Code */
+.content code {
+  padding: 0 3px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  background: #eee;
+  border: 1px solid #cfcfcf;
+}
+
+.content pre {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  background: var(--paper);
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk);
+}
+
+.content pre code {
+  padding: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  background: none;
+  border: 0;
+  white-space: pre;
+}
+
+/* Tables */
+.content table {
+  width: 100%;
+  margin: 0 0 14px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.content th, .content td {
+  padding: 5px 8px;
+  text-align: left;
+  border: 1px solid var(--gray-dk);
+}
+
+.content th { background: var(--gray); }
+.content tbody tr:nth-child(even) { background: #f2f2f2; }
+
+/* Anything wide gets its own scroller rather than blowing out the page */
+.table-scroll { overflow-x: auto; }
+
+/* --- Dialogs and overlays ------------------------------------------------- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(0, 0, 32, .45);
+}
+
+.dialog {
+  width: min(440px, 100%);
+  padding: 3px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: inset -1px -1px 0 var(--gray-dk), inset 1px 1px 0 var(--gray-lt),
+              5px 5px 0 rgba(0, 0, 0, .4);
+}
+
+.dialog-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 4px 3px 6px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy-lt) 100%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.dialog-x {
+  width: 20px; height: 18px; padding: 0;
+  font: bold 11px/1 inherit; cursor: pointer;
+  background: var(--gray);
+  border: 2px solid; border-color: #fff #000 #000 #fff;
+}
+
+.dialog-body { padding: 16px 14px; background: var(--gray); }
+.dialog-body p { margin: 0 0 9px; }
+.dialog-body p:last-child { margin-bottom: 0; }
+.dialog-body hr { border: 0; border-top: 1px solid var(--gray-dk); border-bottom: 1px solid #fff; margin: 9px 0; }
+
+.dialog-buttons { display: flex; justify-content: center; gap: 8px; padding: 4px 10px 12px; background: var(--gray); }
+
+.dlg-row { display: flex; gap: 14px; align-items: flex-start; }
+.dlg-icon { flex: 0 0 auto; font-size: 34px; line-height: 1; color: var(--aol-blue); }
+.dlg-shout { font-size: 19px; font-weight: bold; color: var(--aol-blue); }
+.dlg-small { font-size: 11px; color: #333; }
+
+.goodbye {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(180deg, #1a4b9c 0%, #06183c 100%);
+}
+
+.goodbye-word {
+  margin: 0 0 10px;
+  font-size: 46px;
+  font-weight: bold;
+  color: var(--aol-gold);
+  text-shadow: 3px 3px 0 #000;
+}
+
+.goodbye .dlg-small { color: #a9c3ea; }
+.goodbye .w95-btn { margin-top: 18px; }
+
+/* --- 90s page furniture (for use inside post content) --------------------- */
+
+.badge {
+  margin: 8px 6px 6px;
+  padding: 5px;
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.3;
+  background: #000;
+  color: #0f0;
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+}
+
+.content .construction {
+  margin: 0 0 16px;
+  padding: 9px 12px;
+  text-align: center;
+  font-weight: bold;
+  background: repeating-linear-gradient(45deg, #ffe14d 0 12px, #333 12px 24px);
+  border: 2px solid #000;
+}
+
+.content .construction span {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #fff;
+  border: 1px solid #000;
+}
+
+.content .kw-table td:first-child { width: 1%; white-space: nowrap; font-weight: bold; }
+.content .kw-table a { font-weight: bold; }
+
+.content .signature {
+  margin-top: 22px;
+  padding-top: 12px;
+  font-size: 12px;
+  color: #444;
+  border-top: 1px dotted var(--gray-dk);
+}
+
+/* --- Comments ------------------------------------------------------------- */
+
+.comments-panel {
+  margin: 26px -18px -22px;
+  padding: 2px;
+  background: var(--gray);
+  border-top: 2px solid #000;
+}
+
+.comments-body {
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 2px solid;
+  border-color: #000 #fff #fff #000;
+  box-shadow: inset 1px 1px 0 var(--gray-dk);
+}
+
+.comments-body .comments-off { margin: 0; font-size: 13px; }
+.comments-body .comments-off code { font-family: "Courier New", Courier, monospace; }
+
+/* --- Narrow screens ------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  body { padding: 6px; }
+  /* align-items:flex-start is right for the two-column desktop layout, but in
+     a column flex container it makes children fit-content on the cross axis,
+     which lets wide content (the ticker) stretch the panel past the viewport. */
+  .workspace { flex-direction: column; align-items: stretch; }
+  .channels { flex: 1 1 auto; width: 100%; }
+  .panel-body { padding: 13px 13px 18px; }
+  .welcome { margin: -13px -13px 14px; }
+  .welcome h1 { font-size: 23px; }
+  .menubar { font-size: 12px; }
+  .comments-panel { margin: 22px -13px -18px; }
+  .keyword-form { margin-left: 0; padding-left: 0; width: 100%; }
+  .keyword-form input { flex: 1 1 auto; min-width: 0; width: auto; }
+  .goodbye-word { font-size: 34px; }
+}

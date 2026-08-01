@@ -33,9 +33,19 @@ footer-links:
   xing: #
   htb: #
 
-# Enter your Disqus shortname (not your username) to enable commenting on posts
-# You can find your shortname on the Settings page of your Disqus account
-disqus:
+# Comments, via giscus (GitHub Discussions). Replaces the old unused Disqus
+# stub. Nothing renders until repo_id and category_id are filled in.
+#
+#   1. Settings > General > Features > Discussions
+#   2. Install https://github.com/apps/giscus
+#   3. Get the two IDs from https://giscus.app and paste them below
+giscus:
+  repo: samuelzamvil/samuelzamvil.github.io
+  repo_id:
+  category: Announcements
+  category_id:
+  mapping: pathname
+  theme: light
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics:
@@ -86,4 +96,5 @@ exclude:
   - README.md
   - CNAME
 
-theme: jekyll-theme-hacker
+# Layout lives in _layouts/aol.html with styles in assets/css/aol.css,
+# so no external theme gem is needed. (Was: jekyll-theme-hacker.)
